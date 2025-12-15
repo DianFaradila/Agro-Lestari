@@ -1,0 +1,822 @@
+/* ========================================= */
+/* 1. RESET DAN FONT */
+/* ========================================= */
+body {
+    margin: 0;
+    /* Font tetap modern */
+    font-family: 'Poppins', sans-serif; 
+    
+    /* >>> PERUBAHAN UTAMA UNTUK LATAR BELAKANG GRADIENT PADA BODY <<< */
+    /* Warna: Hijau Gelap (#1E5128) di samping, Hijau Terang (#F7F9F5) di tengah */
+    background-color: #F7F9F5; /* Fallback */
+    background: linear-gradient(to right, 
+        #1E5128 0%,    /* Hijau Gelap (Kiri, 0%) */
+        #1E5128 5%,    /* Hijau Gelap, berakhir di 5% */
+        #F7F9F5 5%,    /* Hijau Terang/Off-White (Mulai 5%) */
+        #F7F9F5 95%,   /* Hijau Terang/Off-White (Berakhir 95%) */
+        #1E5128 95%,   /* Hijau Gelap (Mulai 95%) */
+        #1E5128 100%   /* Hijau Gelap (Kanan, 100%) */
+    );
+    /* ------------------------------------------------------------- */
+    
+    color: #333333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    /* Container harus diatur untuk berada di tengah area terang */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Memberi sedikit padding agar tidak menempel pada tepi gradien */
+    padding: 0 10px; 
+}
+
+/* ========================================= */
+/* 2. NAVBAR DAN HEADER (Nuansa Hutan) */
+/* ========================================= */
+/* Palet Warna Baru: #1E5128 (Hijau Tua/Dark Forest) sebagai Primer, #A3C763 (Gold/Aksen Alami) */
+.navbar {
+    background-color: #1E5128; /* Primary Dark Forest Green */
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Shadow lebih alami */
+    box-shadow: 0 4px 10px rgba(30, 81, 40, 0.4); 
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Efek Navbar Menggulir */
+.navbar.scrolled {
+    background-color: rgba(30, 81, 40, 0.95); /* Sedikit transparansi saat digulir */
+    padding: 10px 0;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 30px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+}
+
+/* Efek Hover Underscore Aksen Gold/Kuning Kehijauan */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #A3C763; /* Secondary Gold/Leaf Accent */
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #A3C763;
+}
+
+/* Tombol Aksi (CTA) - Nuansa Lebih Alami */
+.chat-btn a {
+    color: #1E5128; /* Warna teks Dark Green di tombol terang */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #A3C763; /* Primary CTA Color: Accent Green */
+    padding: 10px 20px;
+    border-radius: 25px;
+    /* Shadow yang lebih organik */
+    box-shadow: 0 4px 8px rgba(163, 199, 99, 0.6);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.chat-btn a:hover {
+    background-color: #7AA849; /* Darker Accent */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(163, 199, 99, 0.8);
+}
+
+/* Gaya untuk Hamburger Menu */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ========================================= */
+/* 3. HERO SECTION */
+/* ========================================= */
+.hero-section {
+    min-height: 100vh;
+    /* Hapus/Komentari background-image jika ingin gradien body terlihat di hero */
+    /* background-image: url('images/hutan.png'); */ 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 70px;
+}
+
+.hero-overlay {
+    /* Gradien untuk konten hero harus transparan di samping jika body memiliki gradien */
+    background: linear-gradient(to top, rgba(30, 81, 40, 0.9) 0%, rgba(30, 81, 40, 0.6) 50%, rgba(30, 81, 40, 0.2) 100%);
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    max-width: 900px;
+    color: white;
+    padding: 20px;
+    /* Background blur yang lembut */
+    background: rgba(0, 0, 0, 0.15); 
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+    z-index: 10; 
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 1.0);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.btn-jelajahi {
+    display: inline-block;
+    background-color: #A3C763; /* Accent Gold/Green */
+    color: #1E5128; /* Teks Dark Green */
+    text-decoration: none;
+    padding: 15px 40px;
+    border-radius: 50px; 
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    /* Shadow yang berpadu dengan tema alam */
+    box-shadow: 0 6px 12px rgba(163, 199, 99, 0.5);
+}
+
+.btn-jelajahi:hover {
+    background-color: #7AA849;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(163, 199, 99, 0.7);
+}
+
+
+/* ========================================= */
+/* 4. MAIN CONTENT AREA (Transisi dari Hero) */
+/* ========================================= */
+.main-content-area {
+    padding-top: 50px;
+    /* PENTING: Hapus background-color agar gradien body terlihat di sini */
+    background-color: transparent; 
+    margin-top: -50px; 
+    position: relative;
+    z-index: 50;
+    /* Berikan background putih hanya pada container agar konten terlihat jelas di area terang */
+    
+    /* Hapus border-radius dari main-content-area jika Anda menggunakan background body */
+    /* Jika Anda ingin efek melengkung, terapkan pada elemen di dalam container */
+    
+    /* Jika ingin background tetap putih (di area tengah) */
+    /* Gunakan elemen di dalam container dengan background-color: white; */
+
+    /* Contoh jika Anda ingin menggunakan container untuk efek melengkung */
+    /* .main-content-area .container { 
+        background-color: #FFFFFF; 
+        border-top-left-radius: 40px; 
+        border-top-right-radius: 40px;
+    } */
+}
+
+h2 {
+    color: #1E5128; /* Primary Dark Forest Green */
+    border-left: 6px solid #A3C763; /* Aksen Gold/Green */
+    padding-left: 20px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+/* ... kode lainnya ... */
+
+/* ========================================= */
+/* 7. FOOTER (Nuansa Hutan) */
+/* ========================================= */
+.main-footer {
+    background-color: #1E5128; /* Primary Dark Forest Green */
+    color: white;
+    padding-top: 30px; 
+    font-size: 0.9em; 
+}
+/* ... kode lainnya di bagian footer tetap sama ... */
+
+/* ========================================= */
+/* 8. RESPONSIVE DESIGN */
+/* ========================================= */
+/* ... kode responsive tetap sama ... */
+/* ========================================= */
+/* 1. RESET DAN FONT */
+/* ========================================= */
+body {
+    margin: 0;
+    /* Font tetap modern */
+    font-family: 'Poppins', sans-serif; 
+    
+    /* >>> PERUBAHAN UTAMA UNTUK LATAR BELAKANG GRADIENT PADA BODY <<< */
+    /* Warna: Hijau Gelap (#1E5128) di samping, Hijau Terang (#F7F9F5) di tengah */
+    background-color: #F7F9F5; /* Fallback */
+    background: linear-gradient(to right, 
+        #1E5128 0%,    /* Hijau Gelap (Kiri, 0%) */
+        #1E5128 5%,    /* Hijau Gelap, berakhir di 5% */
+        #F7F9F5 5%,    /* Hijau Terang/Off-White (Mulai 5%) */
+        #F7F9F5 95%,   /* Hijau Terang/Off-White (Berakhir 95%) */
+        #1E5128 95%,   /* Hijau Gelap (Mulai 95%) */
+        #1E5128 100%   /* Hijau Gelap (Kanan, 100%) */
+    );
+    /* ------------------------------------------------------------- */
+    
+    color: #333333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    /* Container harus diatur untuk berada di tengah area terang */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Memberi sedikit padding agar tidak menempel pada tepi gradien */
+    padding: 0 10px; 
+}
+
+/* ========================================= */
+/* 2. NAVBAR DAN HEADER (Nuansa Hutan) */
+/* ========================================= */
+/* Palet Warna Baru: #1E5128 (Hijau Tua/Dark Forest) sebagai Primer, #A3C763 (Gold/Aksen Alami) */
+.navbar {
+    background-color: #1E5128; /* Primary Dark Forest Green */
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Shadow lebih alami */
+    box-shadow: 0 4px 10px rgba(30, 81, 40, 0.4); 
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Efek Navbar Menggulir */
+.navbar.scrolled {
+    background-color: rgba(30, 81, 40, 0.95); /* Sedikit transparansi saat digulir */
+    padding: 10px 0;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 30px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+}
+
+/* Efek Hover Underscore Aksen Gold/Kuning Kehijauan */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #A3C763; /* Secondary Gold/Leaf Accent */
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #A3C763;
+}
+
+/* Tombol Aksi (CTA) - Nuansa Lebih Alami */
+.chat-btn a {
+    color: #1E5128; /* Warna teks Dark Green di tombol terang */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #A3C763; /* Primary CTA Color: Accent Green */
+    padding: 10px 20px;
+    border-radius: 25px;
+    /* Shadow yang lebih organik */
+    box-shadow: 0 4px 8px rgba(163, 199, 99, 0.6);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.chat-btn a:hover {
+    background-color: #7AA849; /* Darker Accent */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(163, 199, 99, 0.8);
+}
+
+/* Gaya untuk Hamburger Menu */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ========================================= */
+/* 3. HERO SECTION */
+/* ========================================= */
+.hero-section {
+    min-height: 100vh;
+    /* Hapus/Komentari background-image jika ingin gradien body terlihat di hero */
+    /* background-image: url('images/hutan.png'); */ 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 70px;
+}
+
+.hero-overlay {
+    /* Gradien untuk konten hero harus transparan di samping jika body memiliki gradien */
+    background: linear-gradient(to top, rgba(30, 81, 40, 0.9) 0%, rgba(30, 81, 40, 0.6) 50%, rgba(30, 81, 40, 0.2) 100%);
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    max-width: 900px;
+    color: white;
+    padding: 20px;
+    /* Background blur yang lembut */
+    background: rgba(0, 0, 0, 0.15); 
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+    z-index: 10; 
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 1.0);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.btn-jelajahi {
+    display: inline-block;
+    background-color: #A3C763; /* Accent Gold/Green */
+    color: #1E5128; /* Teks Dark Green */
+    text-decoration: none;
+    padding: 15px 40px;
+    border-radius: 50px; 
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    /* Shadow yang berpadu dengan tema alam */
+    box-shadow: 0 6px 12px rgba(163, 199, 99, 0.5);
+}
+
+.btn-jelajahi:hover {
+    background-color: #7AA849;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(163, 199, 99, 0.7);
+}
+
+
+/* ========================================= */
+/* 4. MAIN CONTENT AREA (Transisi dari Hero) */
+/* ========================================= */
+.main-content-area {
+    padding-top: 50px;
+    /* PENTING: Hapus background-color agar gradien body terlihat di sini */
+    background-color: transparent; 
+    margin-top: -50px; 
+    position: relative;
+    z-index: 50;
+    /* Berikan background putih hanya pada container agar konten terlihat jelas di area terang */
+    
+    /* Hapus border-radius dari main-content-area jika Anda menggunakan background body */
+    /* Jika Anda ingin efek melengkung, terapkan pada elemen di dalam container */
+    
+    /* Jika ingin background tetap putih (di area tengah) */
+    /* Gunakan elemen di dalam container dengan background-color: white; */
+
+    /* Contoh jika Anda ingin menggunakan container untuk efek melengkung */
+    /* .main-content-area .container { 
+        background-color: #FFFFFF; 
+        border-top-left-radius: 40px; 
+        border-top-right-radius: 40px;
+    } */
+}
+
+h2 {
+    color: #1E5128; /* Primary Dark Forest Green */
+    border-left: 6px solid #A3C763; /* Aksen Gold/Green */
+    padding-left: 20px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+/* ... kode lainnya ... */
+
+/* ========================================= */
+/* 7. FOOTER (Nuansa Hutan) */
+/* ========================================= */
+.main-footer {
+    background-color: #1E5128; /* Primary Dark Forest Green */
+    color: white;
+    padding-top: 30px; 
+    font-size: 0.9em; 
+}
+/* ... kode lainnya di bagian footer tetap sama ... */
+
+/* ========================================= */
+/* 8. RESPONSIVE DESIGN */
+/* ========================================= */
+/* ... kode responsive tetap sama ... */
+/* ========================================= */
+/* Penambahan Gaya untuk Gambar Sampingan (Edukasi) */
+/* ========================================= */
+
+/* Gaya untuk membuat gambar bersebelahan (Kanan-Kiri) */
+.gambar-ganda {
+    display: flex; /* Menggunakan Flexbox untuk tata letak bersebelahan */
+    gap: 20px; /* Jarak antara dua gambar */
+    justify-content: center; /* Memastikan kedua gambar berada di tengah container */
+    margin: 30px 0;
+    flex-wrap: wrap; /* Penting: agar di HP/layar kecil, gambar kembali ke tumpukan vertikal */
+}
+
+/* ========================================= */
+/* Penambahan Gaya untuk Gambar Sampingan (Edukasi) */
+/* ========================================= */
+
+/* Gaya untuk membuat gambar bersebelahan (Kanan-Kiri) */
+.gambar-ganda {
+    display: flex; 
+    gap: 20px; 
+    justify-content: center; 
+    margin: 30px 0;
+    flex-wrap: wrap; /* Memastikan gambar pecah ke bawah di layar kecil */
+}
+
+/* Gaya untuk setiap item gambar - UKURAN SANGAT KECIL (sekitar 20% lebar) */
+.edukasi-image-item {
+    /* Mengambil sekitar 20% lebar, membuatnya sangat kecil */
+    flex: 1 1 20%; 
+    max-width: 20%; /* Batasan lebar maksimal */
+    min-width: 150px; /* Menjaga ukuran minimum yang masuk akal di tablet/desktop */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Gaya untuk gambar itu sendiri (PENTING: Selalu 100% agar responsif terhadap parent 20%) */
+.edukasi-img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+.edukasi-image-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+/* Responsif: Di layar kecil (misal 600px ke bawah), gambar akan tampil atas-bawah */
+@media (max-width: 600px) {
+    .edukasi-image-item {
+        /* Di ponsel, ukuran tetap 90% (mode vertikal) agar terlihat jelas */
+        flex: 1 1 90%; 
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+}/* ========================================= */
+/* Gaya untuk Galeri Fasilitas (Grid Kanan-Kiri 3x2) */
+/* ========================================= */
+
+.fasilitas-gallery {
+    display: flex;
+    flex-wrap: wrap;       /* PENTING: Memastikan item melipat ke baris baru (kanan-kiri) */
+    gap: 15px;             /* Jarak antara gambar (Gap) */
+    justify-content: center; /* Memposisikan grid di tengah */
+    margin-top: 40px;
+}
+
+.fasilitas-item {
+    /* Untuk Desktop: 3 kolom. Menggunakan 31% agar masih ada sisa untuk gap 15px */
+    flex: 1 1 31%;         
+    max-width: 31%;        /* Batas lebar item di desktop */
+    min-width: 150px;      /* Jaga ukuran minimum agar tidak pecah terlalu cepat */
+    
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fasilitas-img {
+    width: 100%;
+    /* Atur tinggi tetap untuk tampilan grid yang seragam dan kecil */
+    height: 150px; 
+    object-fit: cover; /* PENTING: Memastikan gambar menutupi area item tanpa distorsi */
+    display: block;
+}
+
+.fasilitas-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsif: Untuk Tablet (768px ke bawah), ubah menjadi 2 kolom */
+@media (max-width: 768px) {
+    .fasilitas-item {
+        flex: 1 1 45%; /* 2 kolom per baris */
+        max-width: 45%;
+    }
+}
+
+/* Responsif: Untuk Ponsel (500px ke bawah), ubah menjadi 1 kolom */
+@media (max-width: 500px) {
+    .fasilitas-item {
+        flex: 1 1 90%; /* 1 kolom per baris */
+        max-width: 90%;
+    }
+    .fasilitas-img {
+         height: 200px; /* Tinggi sedikit lebih besar di ponsel */
+    }
+}
+/* ========================================= */
+/* 7. FOOTER (Nuansa Putih/Terang) */
+/* ========================================= */
+.main-footer {
+    /* MENGUBAH KE BACKGROUND PUTIH */
+    background-color: #FFFFFF; /* Latar Belakang Putih */
+    color: #333333; /* Warna Teks Hitam/Abu */
+    padding-top: 30px; 
+    font-size: 0.9em; 
+    border-top: 1px solid #eee; /* Garis pemisah tipis */
+}
+
+.main-footer h4 {
+    color: #1E5128; /* Judul tetap Hijau Tua */
+    margin-bottom: 20px;
+}
+
+/* Gaya Ikon Sosial */
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+.social-links a {
+    color: #1E5128; /* Ikon Hijau Tua */
+    font-size: 1.2em;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+
+.footer-col .fas {
+    /* Mengatur warna ikon kontak menjadi Hijau Tua/Accent */
+    color: #A3C763; 
+    margin-right: 8px;
+}
+
+/* Gaya untuk Bagian Copyright */
+.copyright {
+    background-color: #F7F9F5; /* Warna agak terang untuk membedakan */
+    color: #666666; 
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+/* ========================================= */
+/* Gaya untuk Mitra Proyek (Logo Horizontal Kecil) */
+/* ========================================= */
+
+.logo-list {
+    display: flex; /* MENGUBAH KE HORIZONTAL */
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    gap: 15px; /* Jarak antar logo */
+    align-items: center;
+}
+
+.partner-item {
+    width: 50px; /* Lebar container item */
+    height: 50px; /* Tinggi container item */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partner-logo {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; /* Memastikan logo terlihat utuh */
+    opacity: 0.8;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .partner-logos {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .logo-list {
+        justify-content: center; /* Memposisikan logo di tengah saat di mobile/tablet */
+    }
+}
+/* ========================================= */
+/* Gaya untuk Pasar Tumpah (Dua Gambar Berjejer) */
+/* ========================================= */
+
+.pasar-tumpah-gallery {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.pasar-tumpah-item {
+    /* Mengatur agar setiap gambar mengambil sekitar 48% lebar (untuk 2 gambar) */
+    flex: 1 1 48%; 
+    max-width: 48%;
+    min-width: 300px; /* Lebar minimum agar tidak terlalu kecil di desktop */
+    
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pt-img {
+    width: 100%;
+    /* Tinggi yang seragam agar terlihat rapi */
+    height: 300px; 
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+    display: block;
+}
+
+/* Responsif: Di layar kecil (misal 768px ke bawah), ubah menjadi 1 kolom */
+@media (max-width: 768px) {
+    .pasar-tumpah-item {
+        flex: 1 1 90%; 
+        max-width: 90%;
+        margin: 0 auto 20px;
+    }
+    .pt-img {
+         height: 250px; 
+    }
+}
+
+
+/* ========================================= */
+/* Gaya untuk Data Sensor Cards (Disesuaikan agar seragam) */
+/* ========================================= */
+.data-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.data-card {
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    /* Setiap kartu mengambil 22% agar muat 4 kartu */
+    flex: 1 1 22%; 
+    max-width: 22%;
+    min-width: 150px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.data-card h3 {
+    color: #1E5128;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.data-value {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #A3C763; /* Warna data utama */
+}
+
+.data-unit {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+    .data-card {
+        flex: 1 1 45%; /* 2 kolom di tablet */
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .data-card {
+        flex: 1 1 90%; /* 1 kolom di mobile */
+        max-width: 90%;
+    }
+} 
